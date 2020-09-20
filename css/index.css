@@ -33,7 +33,7 @@ button {
   max-width: fit-content;
 }
 
-input {
+input, select {
   margin: 5px 10px 5px 0;
   border: 0;
   padding: 0 10px;
@@ -44,7 +44,7 @@ input {
   background: none;
   background-color: #3cbc8d;
   color: white;
-  max-width: 200px;
+  width: 200px;
 }
 
 main {
@@ -105,6 +105,7 @@ main {
   width: fit-content;
   height: 100px;
   border-radius: 10px;
+  transition: 0.5s;
 }
 
 .fruit_violet {

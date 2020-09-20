@@ -32,6 +32,18 @@ button {
   display: inline-block;
   max-width: fit-content;
   outline: none;
+  cursor: pointer;
+  
+}
+
+button:hover{
+  background-color: #015875;
+  transition: 0.3s;
+}
+
+button:active{
+  background-color: #74c545;
+  transition: 0.1s;
 }
 
 input, select {

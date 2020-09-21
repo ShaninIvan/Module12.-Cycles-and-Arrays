@@ -13,16 +13,26 @@ const addActionButton = document.querySelector('.add__action__btn'); // кноп
 
 // список фруктов в JSON формате
 let fruitsJSON = `[
-  {"kind": "Мангустин", "color": "fruit_violet", "weight": 13},
-  {"kind": "Дуриан", "color": "fruit_green", "weight": 35},
-  {"kind": "Личи", "color": "fruit_carmazin", "weight": 17},
-  {"kind": "Карамбола", "color": "fruit_yellow", "weight": 28},
-  {"kind": "Тамаринд", "color": "fruit_lightbrown", "weight": 22}
+  {"kind": "Мангустин", "color": "фиолетовый", "weight": 13},
+  {"kind": "Дуриан", "color": "зеленый", "weight": 35},
+  {"kind": "Личи", "color": "розово-красный", "weight": 17},
+  {"kind": "Карамбола", "color": "желтый", "weight": 28},
+  {"kind": "Тамаринд", "color": "светло-коричневый", "weight": 22}
 ]`;
 
 // преобразование JSON в объект JavaScript
 let fruits = JSON.parse(fruitsJSON);
 
+//вызов соответствующего цвету класса CSS
+function colorToClass(color){
+  switch (color){
+    case 'фиолетовый': return 'fruit_violet';
+    case 'зеленый': return 'fruit_green';
+    case 'розово-красный': return 'fruit_carmazin';
+    case 'желтый': return 'fruit_yellow';
+    case 'светло-коричневый': return 'fruit_lightbrown'
+  }
+}
 
 /*** ОТОБРАЖЕНИЕ ***/
 
@@ -32,48 +42,26 @@ const display = () => {
   
   for (let i = 0; i < fruits.length; i++) {
 
+    const colorClass = colorToClass(fruits[i].color)
     let newLi = document.createElement('li');
-    newLi.className = `fruit__item ${fruits[i].color}`;
-    
-    
-
-    let color;
-    switch (fruits[i].color){
-      case 'fruit_violet':
-        color = 'фиолетовый';
-        break;
-
-      case 'fruit_green':
-        color = 'зеленый';
-        break;
-
-      case 'fruit_carmazin':
-        color = 'розово-красный';
-        break;
-      
-      case 'fruit_yellow':
-        color = 'желтый';
-        break;
-      
-      case 'fruit_lightbrown':
-        color = 'светло-коричневый';
-        break;
-    }
-
+    newLi.className = `fruit__item ${colorClass}`;
 
     newLi.innerHTML = `<div class="fruit__info">
                         <div>index: ${i}</div>
                         <div>kind: ${fruits[i].kind}</div>
-                        <div>color: ${color}</div>
+                        <div>color: ${fruits[i].color}</div>
                         <div>weight (кг): ${fruits[i].weight}</div>
                       </div>`
 
-  fruitsList.append(newLi);                    
+  fruitsList.append(newLi);   
+                    
   }
+
 };
 
 // первая отрисовка карточек
 display();
+
 
 /*** ПЕРЕМЕШИВАНИЕ ***/
 

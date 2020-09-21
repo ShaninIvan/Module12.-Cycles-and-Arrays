@@ -118,8 +118,9 @@ main {
   width: fit-content;
   height: 100px;
   border-radius: 10px;
-  transition: 0.5s;
+  transition: 1s;
 }
+
 
 .fruit_violet {
   background: #8b00ff;

@@ -1,8 +1,8 @@
 // элементы в DOM можно получить при помощи функции querySelector
 const fruitsList = document.querySelector('.fruits__list'); // список карточек
 const shuffleButton = document.querySelector('.shuffle__btn'); // кнопка перемешивания
-const minWeight = document.querySelector('.minweight__input');
-const maxWeight = document.querySelector('.maxweight__input');
+const minWeight = document.querySelector('.minweight__input'); //поле с минимальным весом
+const maxWeight = document.querySelector('.maxweight__input'); //поле с максимальным весом
 const filterButton = document.querySelector('.filter__btn'); // кнопка фильтрации
 const sortKindLabel = document.querySelector('.sort__kind'); // поле с названием сортировки
 const sortTimeLabel = document.querySelector('.sort__time'); // поле с временем сортировки
@@ -12,6 +12,7 @@ const kindInput = document.querySelector('.kind__input'); // поле с наз�
 const colorInput = document.querySelector('.color__input'); // поле с названием цвета
 const weightInput = document.querySelector('.weight__input'); // поле с весом
 const addActionButton = document.querySelector('.add__action__btn'); // кнопка добавления
+const addX100Button = document.querySelector('.addX100__action__btn'); //кнопка генерации 100 случайных карточек
 
 // список фруктов в JSON формате
 let fruitsJSON = `[
@@ -156,9 +157,9 @@ const sortAPI = {
     let left = [], center = [], right = [];
 
     arr.forEach(el => {
-      if(el.color == pivot){center.push(el)}
-      else if ((el.color != pivot) && (el.color.length>=pivot.length)){right.push(el)}
-      else if ((el.color != pivot) && (el.color.length<pivot.length)){left.push(el)}
+      if (el.color == pivot) { center.push(el) }
+      else if ((el.color != pivot) && (el.color.length >= pivot.length)) { right.push(el) }
+      else if ((el.color != pivot) && (el.color.length < pivot.length)) { left.push(el) }
     });
 
     return fruits = [...sortAPI.quickSort(left), ...center, ...sortAPI.quickSort(right)]
@@ -190,15 +191,28 @@ sortChangeButton.addEventListener('click', () => {
 
 });
 
+
 sortActionButton.addEventListener('click', () => {
   sortTimeLabel.innerText = 'Sorting...';
-  const sort = sortAPI[sortKind];
-  sortAPI.startSort(sort, fruits, comparationColor);
-  display();
-  sortTimeLabel.innerText = sortTime;
+  setTimeout(() =>{
+    const sort = sortAPI[sortKind];
+    sortAPI.startSort(sort, fruits, comparationColor);
+    display();
+    sortTimeLabel.innerText = sortTime;
+  }, 50);
+
 });
 
 /*** ДОБАВИТЬ ФРУКТ ***/
+
+const addCard = (kind, color, weight) => {
+  let fruit = {
+    kind: kind,
+    color: color,
+    weight: weight
+  }
+  fruits.push(fruit);
+}
 
 addActionButton.addEventListener('click', () => {
   // if ((kindInput.value == "") || (weightInput.value == "")){
@@ -207,11 +221,22 @@ addActionButton.addEventListener('click', () => {
 
   // }
 
-  let fruit = {
-    kind: kindInput.value,
-    color: colorInput.value,
-    weight: weightInput.value
-  }
-  fruits.push(fruit);
+  addCard(kindInput.value, colorInput.value, weightInput.value);
   display();
 });
+
+/*** ДОБАВИТЬ 100 случайных фруктов ***/
+
+addX100Button.addEventListener('click', () =>{
+  const randomFruits  = JSON.parse(fruitsJSON); 
+  const randomCount = randomFruits.length;
+
+
+  for (let i=0; i<100; i++){
+    const kind = randomFruits[Math.floor(Math.random()*randomCount)].kind
+    const color = randomFruits[Math.floor(Math.random()*randomCount)].color
+    const weight = Math.floor(Math.random()*(51)+1);
+    addCard(kind, color, weight);
+  }
+  display();
+} )

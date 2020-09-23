@@ -30,7 +30,8 @@ button {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  max-width: fit-content;
+  width: 270px;
+  height: 35px;
   outline: none;
   cursor: pointer;
   
@@ -57,7 +58,11 @@ input, select {
   background: none;
   background-color: #3cbc8d;
   color: white;
-  width: 200px;
+  width: 270px;
+}
+
+.inputError{
+  background-color: #ff0000;
 }
 
 main {

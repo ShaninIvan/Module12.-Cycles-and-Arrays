@@ -14,7 +14,6 @@
         <h2 class="wrapper__title">⚙️ Панель управления</h2>
 
         <div class="panel__devtools">
-          <!-- TODO: при нажатии элементы массива перемешиваются в случайном порядке -->
           <button class="shuffle__btn line">Перемешать</button>
 
           <div class="line">
@@ -29,51 +28,46 @@
             <input class="maxweight__input" />
           </div>
 
-          <!-- TODO: при нажатии элементы массива фильтруются в пределах [minweight, maxweight] -->
           <button class="filter__btn line">Фильтровать</button>
 
           <div class="line">
             <span>Алгоритм сортировки:</span>
-            <!-- TODO: указывается название алгоритма сортировки -->
             <span class="sort__kind"></span>
           </div>
 
           <div class="line">
             <span>Время сортировки: </span>
-            <!-- TODO: выводится время сортировки -->
             <span class="sort__time"></span>
           </div>
 
-          <!-- TODO: при нажатии происходит смена алгоритма сортировки -->
           <button class="sort__change__btn line">Сменить алгоритм сортировки</button>
 
-          <!-- TODO: при нажатии происходит сортировка и рассчет времени сортировки -->
           <button class="sort__action__btn line">Сортировать</button>
 
           <!-- пользователь указывает значения характеристик будущего фрукта -->
           <div class="line">
             <div>kind:</div>
-            <input class="kind__input" />
+            <input class="kind__input newFruit" />
           </div>
 
           <div class="line">
             <div>color:</div>
-            <select class="color_input">
-              <option value="fruit_violet" class="fruit_violet">Фиолетовый</option>
-              <option value="fruit_green" class="fruit_green">Зеленый</option>
-              <option value="fruit_carmazin" class="fruit_carmazin">Розово-красный</option>
-              <option value="fruit_yellow" class="fruit_yellow">Желтый</option>
-              <option value="fruit_lightbrown" class="fruit_lightbrown">Светло-коричневый</option>
+            <select class="color__input">
+              <option value="фиолетовый" class="fruit_violet">фиолетовый</option>
+              <option value="зеленый" class="fruit_green">зеленый</option>
+              <option value="розово-красный" class="fruit_carmazin">розово-красный</option>
+              <option value="желтый" class="fruit_yellow">желтый</option>
+              <option value="светло-коричневый" class="fruit_lightbrown">светло-коричневый</option>
             </select>
           </div>
 
           <div class="line">
             <div>weight:</div>
-            <input class="weight__input" />
+            <input class="weight__input newFruit" />
           </div>
 
-          <!-- TODO: при нажатии новый фрукт добавляется в конец списка -->
           <button class="add__action__btn line">Добавить фрукт</button>
+          
         </div>
       </section>
 

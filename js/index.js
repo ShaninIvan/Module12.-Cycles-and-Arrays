@@ -13,6 +13,7 @@ const colorInput = document.querySelector('.color__input'); // поле с на�
 const weightInput = document.querySelector('.weight__input'); // поле с весом
 const addActionButton = document.querySelector('.add__action__btn'); // кнопка добавления
 const addX100Button = document.querySelector('.addX100__action__btn'); //кнопка генерации 100 случайных карточек
+const warningWrapper = document.querySelector('.warning'); //область предупреждений
 
 // список фруктов в JSON формате
 let fruitsJSON = `[
@@ -35,6 +36,16 @@ function colorToClass(color) {
     case 'желтый': return 'fruit_yellow';
     case 'светло-коричневый': return 'fruit_lightbrown'
   }
+}
+
+/*** АЛЕРТ ***/
+
+const warning = (text) =>{
+  warningWrapper.innerText = text;
+  warningWrapper.classList.add('warting__active');
+  setTimeout(() => {
+    warningWrapper.classList.remove('warting__active');
+  }, 1500);
 }
 
 /*** ОТОБРАЖЕНИЕ ***/
@@ -87,6 +98,10 @@ const shuffleFruits = () => {
 };
 
 shuffleButton.addEventListener('click', () => {
+  if (fruits.length<=1){
+    warning('Тут нечего перемешивать');
+    return false;
+  }
   shuffleFruits();
   display();
 });
@@ -98,10 +113,14 @@ const filterFruits = () => {
   fruits = fruits.filter((item) => {
     return (item.weight >= minWeight.value) && (item.weight <= maxWeight.value)
   });
-  console.log(fruits);
 };
 
 filterButton.addEventListener('click', () => {
+  if ((isNaN(minWeight.value)) || (isNaN(maxWeight.value)) || (minWeight.value=="") || (maxWeight.value=="")){
+    warning('Задайте минимальный и максимальный вес в виде целого числа');
+    return false;
+  }
+  
   filterFruits();
   display();
 });
@@ -215,11 +234,10 @@ const addCard = (kind, color, weight) => {
 }
 
 addActionButton.addEventListener('click', () => {
-  // if ((kindInput.value == "") || (weightInput.value == "")){
-  //   
-  //   return false;
-
-  // }
+  if ((kindInput.value == "") || (weightInput.value == "")){
+    warning('Заполните поля kind и weight');
+    return false;
+  }
 
   addCard(kindInput.value, colorInput.value, weightInput.value);
   display();
